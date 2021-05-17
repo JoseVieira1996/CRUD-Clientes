@@ -1,2 +1,3 @@
 # CRUD-Clientes
-CRUD feito conforme orientado no Bootcamp da escola DevSuperior. 
+
+CRUD feito conforme as orientações passadas no Bootcamp da escola DevSuperior. 
