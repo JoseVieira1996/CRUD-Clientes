@@ -16,7 +16,6 @@ import com.example.trabalho.Atividade.DTO.ClientDTO;
 import com.example.trabalho.Atividade.entities.Client;
 import com.example.trabalho.Atividade.repository.ClientRepository;
 import com.example.trabalho.Atividade.service.exceptions.DatabaseException;
-import com.example.trabalho.Atividade.service.exceptions.ResourceNotFoundException;
 
 @Service
 public class ClientService {
@@ -33,7 +32,7 @@ public class ClientService {
 	@Transactional(readOnly = true)
 	public ClientDTO findById(Long id) {
 		Optional <Client> obj = repository.findById(id);
-		Client entity = obj.orElseThrow(()-> new EntityNotFoundException("Entity not found"));
+		Client entity = obj.orElseThrow(()-> new com.example.trabalho.Atividade.service.exceptions.EntityNotFoundException("Entity not found"));
 		return new ClientDTO(entity);
 	}
 
@@ -63,7 +62,7 @@ public class ClientService {
 			return new ClientDTO(entity);
 		}
 		catch(EntityNotFoundException e){
-			throw new ResourceNotFoundException("Id not found "+ id);
+			throw new EntityNotFoundException("Id not found "+ id);
 		}
 	}
 
@@ -72,7 +71,7 @@ public class ClientService {
 			repository.deleteById(id);
 		}
 		catch(EmptyResultDataAccessException e){
-			throw new ResourceNotFoundException("Id not found "+ id);
+			throw new EntityNotFoundException("Id not found "+ id);
 		}
 		catch(DataIntegrityViolationException e){
 			throw new DatabaseException("Integrity violation");
