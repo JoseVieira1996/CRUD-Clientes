@@ -41,12 +41,14 @@ public class ClientResources {
 		return ResponseEntity.ok().body(list);	
 	}
 	
+	//Buscar um cliente por id
 	@GetMapping(value="/{id}")
 	public ResponseEntity<ClientDTO> findById(@PathVariable Long id){
 		ClientDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);	
 	}
 	
+	//Inserir um cliente
 	@PostMapping
 	public ResponseEntity<ClientDTO> insert(@RequestBody ClientDTO dto){
 		dto = service.insert(dto);
@@ -55,14 +57,14 @@ public class ClientResources {
 		return ResponseEntity.created(uri).body(dto);
 	}
 	
-	
+	//Modificar os dados de um cliente
 	@PutMapping(value="/{id}")
 	public ResponseEntity<ClientDTO> update(@PathVariable Long id, @RequestBody ClientDTO dto){
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}
 	
-	
+	//Deletar um cliente
 	@DeleteMapping(value="/{id}")
 	public ResponseEntity<ClientDTO> delete(@PathVariable Long id){
 		service.delete(id);
